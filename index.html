@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="js/jquery-2.1.1.min.js"></script>
+
+		<script src="js/jquery.touchwipe.1.1.1.js"></script>
+
+	<script>	
+	function loadXMLDoc(filename)
+	{
+	if (window.XMLHttpRequest)
+	  {
+	  xhttp=new XMLHttpRequest();
+	  }
+	else // code for IE5 and IE6
+	  {
+	  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xhttp.open("GET",filename,false);
+	xhttp.send();
+	return xhttp.responseXML;
+	} 
+	</script>	
+	
+	</head>
+	
+	
+<body>
+	
+	<!-- worked from 9:30pm to 11:25pm tueday may 13 2014-->
+	
+	<!--http://www.netcu.de/jquery-touchwipe-iphone-ipad-library-->
+	
+	<!-- need to check if _a.jpg file exist -->
+	
+	
+
+<script>
+
+
+
+
+
+
+
+
+var xmlhttp;
+var xmlDoc;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET","items.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML; 
+
+document.write("<table border='1'>");
+var x=xmlDoc.getElementsByTagName("ITEM");
+var id;
+
+
+for (i=0;i<x.length;i++)
+  { 
+  document.write("<tr>");
+  document.write("<td>");
+	
+
+  
+  //get id value from item
+  id = getDeviceAttributes(x[i]);
+  
+  
+  
+  document.write('<div id="imagegallery" style="border: 1px solid #666666; width: 400px; height: 300px; margin-top: 10px; margin-bottom: 10px;">');
+ 
+  document.write('<img width="150"  height="250" src="http://www.furoutlet.com/images/');
+  document.write(id);
+  document.write('_a.jpg"');
+  
+  document.write('<img width="150"  height="250" src="http://www.furoutlet.com/images/');
+  document.write(id);
+  document.write('_b.jpg"');
+  
+  document.write('<img width="150"  height="250"src="http://www.furoutlet.com/images/');
+  document.write(id);
+  document.write('_c.jpg"');
+  
+  document.write('</div>');  
+   
+  document.write("</td>");
+  document.write("<td>");
+  
+  //document.write("<img src=\"car1.jpg\"  /> ");
+ /* 
+  document.write(x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue);
+  document.write("</td>");
+  document.write("<td>");
+  document.write(x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue);
+  document.write("</td>");
+  document.write("</tr>");
+*/
+
+
+  
+  }
+  
+
+// alert($('#imagegallery').size()); 
+  
+document.write("</table>");
+
+
+// make a function that extracts the attributes out of a Node
+function getDeviceAttributes(dvc)
+	{
+	    //var name = dvc.getAttribute("name");
+	   // var uuid = dvc.getAttribute("uuid");
+	   var id   = dvc.getAttribute("id");
+       return id;   
+	}
+
+$("#imagegallery").touchwipe({
+     wipeLeft: function() { alert("left"); },
+     wipeRight: function() { alert("right"); },
+     wipeUp: function() { alert("up"); },
+     wipeDown: function() { alert("down"); },
+     min_move_x: 20,
+     min_move_y: 20,
+     preventDefaultEvents: true
+});	
+	
+</script>
+
+</body>
+</html>
